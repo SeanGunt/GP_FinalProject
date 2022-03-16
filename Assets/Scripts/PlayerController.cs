@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private InputAction grappleAction;
     public GameObject zapBall;
     public Transform gunBarrelTip;
-    public LayerMask environment;
+    public Transform gunModel;
     
 
     private void Awake()
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
     }
 
-    //Stats Actions//
+    //Starts Actions//
     private void OnEnable()
     {
         zapAction.performed += _ => Zap();
@@ -92,5 +92,9 @@ public class PlayerController : MonoBehaviour
         //Rotate player towards camera direction//
         Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         transform.rotation =  Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        //Rotates the gun up and down based off camera//
+        Quaternion gunRotationTarget = Quaternion.Euler(cameraTransform.eulerAngles);
+        gunModel.rotation = Quaternion.Lerp(gunModel.rotation, gunRotationTarget, rotationSpeed * Time.deltaTime);
     }
 }
