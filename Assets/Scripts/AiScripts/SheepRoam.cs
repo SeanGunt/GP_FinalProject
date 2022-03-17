@@ -11,6 +11,10 @@ public class SheepRoam : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    //Stun
+    float stunTime;
+    bool Stunned;
+
 
     //Score
     public SheepScore sheepScore;
@@ -40,6 +44,18 @@ public class SheepRoam : MonoBehaviour
 
         if (!playerInSightRange) Patroling();
         if (playerInSightRange) ChasePlayer();
+
+        if (Stunned)
+        {
+            agent.speed = 0;
+            stunTime -= Time.deltaTime;
+            if (stunTime <= 0)
+            {
+                agent.speed = 10f;
+                stunTime = 0;
+                Stunned = false;
+            }
+        }
     }
 
     private void Patroling()
@@ -99,11 +115,12 @@ public class SheepRoam : MonoBehaviour
 
         }
 
-        
-
-
-
+          if (other.tag == "Zap")
+        {
+            Stunned = true;
+            stunTime = 2.5f;
+        }
     }
 
-
+  
 }
