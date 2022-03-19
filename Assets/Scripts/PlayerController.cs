@@ -6,11 +6,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private bool timeSlowed;
-    private float playerSpeed = 6.0f;
+    private float playerSpeed = 12.0f;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
     private float rotationSpeed = 50f;
-    private float range = 100.0f;
+    private float maxTimeSlowAmount = 5f;
+    private float currentTimeSlowAmount;
     private PlayerInput playerInput;
     private InputAction moveAction;
     private InputAction jumpAction;
@@ -23,7 +24,6 @@ public class PlayerController : MonoBehaviour
     public Transform zapBarrelTip;
     public Transform hookBarrelTip;
     public Transform gunModel;
-    public Transform debugHitPointTransform;
     private State state;
     private Vector3 hookShotPosition;
 
@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        currentTimeSlowAmount = maxTimeSlowAmount;
+
         state = State.Normal;
         cameraTransform = Camera.main.transform;
         controller = GetComponent<CharacterController>();
@@ -49,66 +51,64 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
     }
 
-    //Starts Actions//
-    private void OnEnable()
+
+    // Zap Projectile insantiates at barrel tip, sets target at hit point (center of screen)
+    private void HandleZap()
     {
-        zapAction.performed += _ => Zap();
-    }
-    //Ends Actions//
-    private void OnDisable()
-    {
-        zapAction.performed -= _ => Zap();
+        if (zapAction.triggered)
+        {
+            GameObject zap = GameObject.Instantiate(zapBall, zapBarrelTip.position, Quaternion.identity);
+        }
     }
 
-    //Zap Projectile insantiates at barrel tip, sets target at hit point (center of screen)//
-    private void Zap()
+    // Slows time by half when pressing F, can only be activated with max current timeslow amount
+    private void HandleTimeSlowTrigger()
     {
-        RaycastHit hit;
-        GameObject zap = GameObject.Instantiate(zapBall, zapBarrelTip.position, Quaternion.identity);
-        ZapController zapController = zap.GetComponent<ZapController>();
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, range))
         {
-            zapController.target = hit.point;
-        }
-        else
-        {
-            zapController.target = cameraTransform.position + cameraTransform.forward * range;
-        }
-        
-    }
-
-    //Slows time by half when pressing F
-    private void HandleTimeSlow()
-    {
-        if (slowTimeAction.triggered)
-        {
-            if (!timeSlowed)
+            if (slowTimeAction.triggered && !timeSlowed && currentTimeSlowAmount == 5.0f)
             {
-                Time.timeScale = 0.5f;
                 timeSlowed = true;
             }
-            else
+            else if (slowTimeAction.triggered)
             {
-                Time.timeScale = 1.0f;
                 timeSlowed = false;
             }
         }
     }
+    private void HandleTimeSlow()
+    {
+        // Meter for time slow that ticks down at 1 per second, the meter ticking down is multiplied by two since time is running at half speed
+        if (timeSlowed)
+        {
+            Time.timeScale = 0.5f;
+            currentTimeSlowAmount = Mathf.Clamp(currentTimeSlowAmount -= Time.deltaTime * 2, 0.0f, 5.0f);
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+            currentTimeSlowAmount = Mathf.Clamp(currentTimeSlowAmount += Time.deltaTime, 0.0f, 5.0f);
+        }
+        if (currentTimeSlowAmount == 0)
+        {
+            timeSlowed = false;
+        }
+        //Debug.Log(currentTimeSlowAmount);
+    }
 
     private void HandleCharacterRotation()
     {
-        //Rotate player towards camera direction//
+        // Rotate player towards camera direction
         Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         transform.rotation =  Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        //Rotates the gun up and down based off camera//
+        // Rotates the gun up and down based off camera
         Quaternion gunRotationTarget = Quaternion.Euler(cameraTransform.eulerAngles);
         gunModel.rotation = Quaternion.Lerp(gunModel.rotation, gunRotationTarget, rotationSpeed * Time.deltaTime);
     }
 
     private void HandleCharacterMovement()
     {
-        //Moves the player//
+        // Moves the player
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
         move.y = 0;
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        //Jump//
+        // Jump
         if (jumpAction.triggered && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
@@ -130,20 +130,19 @@ public class PlayerController : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
-
+    // Shoots a Raycast and creates a point for the player to travel to
     private void HandleHookShotStart()
     {
         if( grappleAction.triggered)
         {
             if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit))
             {
-                debugHitPointTransform.position = hit.point;
                 hookShotPosition = hit.point;
                 state = State.HookShotFlyingPlayer;
             }
         }
     }
-
+    // The actual movement that happens during the hookshot
     private void HandelHookShotMovement()
     {
         Vector3 hookShotDir = (hookShotPosition - transform.position).normalized;
@@ -160,17 +159,22 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // States
         switch (state)
         {
             default:
             case State.Normal:
+                HandleZap();
                 HandleTimeSlow();
+                HandleTimeSlowTrigger();
                 HandleCharacterMovement();
                 HandleCharacterRotation();
                 HandleHookShotStart();
             break;
             case State.HookShotFlyingPlayer:
+                HandleZap();
                 HandleTimeSlow();
+                HandleTimeSlowTrigger();
                 HandleCharacterRotation();
                 HandelHookShotMovement();
             break;

@@ -1,17 +1,24 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class ZapController : MonoBehaviour
 {
-   private float speed = 75f;
-   public Vector3 target { get; set;}
+   private float forceMultiplier = 125f;
+   private float destroyAfterTime = 5.0f;
+   public Vector3 zapBarrel { get; set;}
+   Rigidbody rb;
+   Camera cam;
 
-    void Update()
+    void Awake()
     {
-        // causes bullet to travel towards the target, the target gets set in the player controller //
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, target) < 0.01f)
-        {
-            Destroy(gameObject);
-        }
+        cam = Camera.main;
+        rb = GetComponent<Rigidbody>();
+        rb.AddForce(cam.transform.forward * forceMultiplier, ForceMode.Impulse);
+        Destroy(this.gameObject, destroyAfterTime);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Destroy(this.gameObject);
     }
 }

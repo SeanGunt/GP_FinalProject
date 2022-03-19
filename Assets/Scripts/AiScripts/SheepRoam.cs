@@ -10,7 +10,7 @@ public class SheepRoam : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     //Stun
-    float stunTime;
+    float stunTime = 2.5f;
     bool Stunned;
 
     //Score
@@ -47,7 +47,7 @@ public class SheepRoam : MonoBehaviour
             if (stunTime <= 0)
             {
                 agent.speed = 10f;
-                stunTime = 0;
+                stunTime = 2.5f;
                 Stunned = false;
             }
         }
@@ -63,7 +63,7 @@ public class SheepRoam : MonoBehaviour
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distanceToWalkPoint.magnitude < 1.5f)
             walkPointSet = false;
     }
     private void SearchWalkPoint()
@@ -109,11 +109,11 @@ public class SheepRoam : MonoBehaviour
             Destroy(gameObject);
 
         }
-
           if (other.tag == "Zap")
         {
             Stunned = true;
-            stunTime = 2.5f;
+            Debug.Log("Collided");
+            Destroy(other.gameObject);
         }
     }
 }
