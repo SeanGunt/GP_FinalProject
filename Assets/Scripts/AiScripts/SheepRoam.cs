@@ -6,15 +6,12 @@ using UnityEngine.AI;
 public class SheepRoam : MonoBehaviour
 {
     public NavMeshAgent agent;
-
     public Transform player;
-
     public LayerMask whatIsGround, whatIsPlayer;
 
     //Stun
     float stunTime;
     bool Stunned;
-
 
     //Score
     public SheepScore sheepScore;
@@ -24,8 +21,6 @@ public class SheepRoam : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
-
-
 
     //States
     public float sightRange;
@@ -121,6 +116,4 @@ public class SheepRoam : MonoBehaviour
             stunTime = 2.5f;
         }
     }
-
-  
 }
