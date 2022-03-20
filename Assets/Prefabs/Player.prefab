@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7824199059567875708}
   - component: {fileID: 7824199059567875707}
   - component: {fileID: 7824199059567875706}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gun
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7824199059668314217}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Zap Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 7824199059793263410}
   - component: {fileID: 7824199059793263412}
   - component: {fileID: 7824199059793263413}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zapBall: {fileID: 36891125345884922, guid: 188309f75fc1e4846a90f774a4ec3f63, type: 3}
-  hookPrefab: {fileID: 1977613790635395545, guid: d49feb3306bd3974bb168ffb2c23eae8, type: 3}
+  hookPrefab: {fileID: 1869752548221351235, guid: 78da01af6e601c94988ee8d9239bc84d, type: 3}
   zapBarrelTip: {fileID: 7824199059668314217}
   hookBarrelTip: {fileID: 7824199060572665164}
   gunModel: {fileID: 7824199059567875705}
@@ -334,7 +334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7824199060151795038}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Follow Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7824199060572665164}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grapple Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -52,6 +52,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "CloseGame",
+                    "type": "Button",
+                    "id": "90f7e78d-8a18-4a40-b4d5-ee046c88e610",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -162,6 +170,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SlowTime",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ab410cf-e498-4db4-8366-901f1a51c85a",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

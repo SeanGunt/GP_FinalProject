@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     CharacterController controller;
     private Vector3 playerVelocity;
+    private Vector3 hookShotPosition;
     private bool groundedPlayer;
     private bool timeSlowed;
     private float playerSpeed = 12.0f;
@@ -18,20 +19,23 @@ public class PlayerController : MonoBehaviour
     private InputAction zapAction;
     private InputAction grappleAction;
     private InputAction slowTimeAction;
+    private InputAction closeGameAction;
     public GameObject zapBall;
     public GameObject hookPrefab;
+    public static GameObject hook;
     private Transform cameraTransform;
     public Transform zapBarrelTip;
     public Transform hookBarrelTip;
     public Transform gunModel;
     private State state;
-    private Vector3 hookShotPosition;
 
+    // States
     private enum State
     {
         Normal, HookShotFlyingPlayer
     }
 
+    // Called on object Awake in Scene
     private void Awake()
     {
         currentTimeSlowAmount = maxTimeSlowAmount;
@@ -46,11 +50,11 @@ public class PlayerController : MonoBehaviour
         zapAction = playerInput.actions["Zap"];
         grappleAction = playerInput.actions["Grapple"];
         slowTimeAction = playerInput.actions["SlowTime"];
+        closeGameAction = playerInput.actions["CloseGame"];
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
 
     // Zap Projectile insantiates at barrel tip, sets target at hit point (center of screen)
     private void HandleZap()
@@ -75,6 +79,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    // Time Slow mechanic
     private void HandleTimeSlow()
     {
         // Meter for time slow that ticks down at 1 per second, the meter ticking down is multiplied by two since time is running at half speed
@@ -92,9 +97,9 @@ public class PlayerController : MonoBehaviour
         {
             timeSlowed = false;
         }
-        //Debug.Log(currentTimeSlowAmount);
     }
 
+    // Rotates Player
     private void HandleCharacterRotation()
     {
         // Rotate player towards camera direction
@@ -106,6 +111,7 @@ public class PlayerController : MonoBehaviour
         gunModel.rotation = Quaternion.Lerp(gunModel.rotation, gunRotationTarget, rotationSpeed * Time.deltaTime);
     }
 
+    // Character Movement
     private void HandleCharacterMovement()
     {
         // Moves the player
@@ -128,6 +134,8 @@ public class PlayerController : MonoBehaviour
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
+        
+        // Applies Gravity to player
         controller.Move(playerVelocity * Time.deltaTime);
     }
     // Shoots a Raycast and creates a point for the player to travel to
@@ -137,6 +145,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit))
             {
+                hook = Instantiate(hookPrefab, hit.point, Quaternion.identity);
                 hookShotPosition = hit.point;
                 state = State.HookShotFlyingPlayer;
             }
@@ -146,14 +155,42 @@ public class PlayerController : MonoBehaviour
     private void HandelHookShotMovement()
     {
         Vector3 hookShotDir = (hookShotPosition - transform.position).normalized;
-        float hookShotSpeed = Vector3.Distance(transform.position, hookShotPosition);
+        float hookShotSpeedMin = 10f;
+        float hookShotSpeedMax = 40f;
+        float hookShotSpeed = Mathf.Clamp(Vector3.Distance(transform.position, hookShotPosition), hookShotSpeedMin, hookShotSpeedMax);
         float hookshotSpeedMultiplyer = 2f;
+
         controller.Move(hookShotDir * hookShotSpeed * hookshotSpeedMultiplyer* Time.deltaTime);
 
         float reachedHookShotPositionDistance = 2f;
         if (Vector3.Distance(transform.position, hookShotPosition) < reachedHookShotPositionDistance)
         {
+            Destroy(hook);
             state = State.Normal;
+            ResetGravity();
+        }
+
+        if (jumpAction.triggered)
+        {
+            Destroy(hook);
+            state = State.Normal;
+            ResetGravity();
+        }
+    }
+
+    // Resets Gravity
+    private void ResetGravity()
+    {
+        playerVelocity.y = 0;
+    }
+
+    // Closes Game
+    private void CloseGame()
+    {
+        if (closeGameAction.triggered)
+        {
+            Application.Quit();
+            Debug.Log("Quit");
         }
     }
 
@@ -164,6 +201,7 @@ public class PlayerController : MonoBehaviour
         {
             default:
             case State.Normal:
+                CloseGame();
                 HandleZap();
                 HandleTimeSlow();
                 HandleTimeSlowTrigger();
@@ -171,13 +209,15 @@ public class PlayerController : MonoBehaviour
                 HandleCharacterRotation();
                 HandleHookShotStart();
             break;
+
             case State.HookShotFlyingPlayer:
+                CloseGame();
                 HandleZap();
                 HandleTimeSlow();
                 HandleTimeSlowTrigger();
                 HandleCharacterRotation();
                 HandelHookShotMovement();
-            break;
+                break;
         }
     }
 }
