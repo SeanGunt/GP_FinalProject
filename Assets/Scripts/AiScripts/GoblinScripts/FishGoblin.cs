@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RaceRobot : MonoBehaviour
+public class FishGoblin : MonoBehaviour
 {
-    public NavMeshAgent agent;
+    
+
 
     public Transform movePositionTransform;
 
     private NavMeshAgent navMeshAgent;
-    
+
+    public GoblinsEscapedscore goblinsEscapedscore;
+
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -20,18 +23,25 @@ public class RaceRobot : MonoBehaviour
     void Update()
     {
         navMeshAgent.destination = movePositionTransform.position;
-        agent = GetComponent<NavMeshAgent>();
     }
+
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "RobotEnd")
+        if (other.tag == "GoblinEnd")
         {
-            agent.speed = 0;
+            goblinsEscapedscore.EscapedGoblins += 1;
+            Destroy(gameObject);
             
         }
 
 
+
+
+
     }
+
+
+
 
 }

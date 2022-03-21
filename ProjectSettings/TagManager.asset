@@ -7,6 +7,8 @@ TagManager:
   - Sheep
   - Pen
   - Zap
+  - GoblinEnd
+  - RobotEnd
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - Player
   - Zap
   - Pen
-  - 
-  - 
+  - RobotPath
+  - GoblinPath
   - 
   - 
   - 
