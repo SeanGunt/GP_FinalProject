@@ -31,8 +31,12 @@ public class FishGoblin : MonoBehaviour
         if (other.tag == "GoblinEnd")
         {
             goblinsEscapedscore.EscapedGoblins += 1;
+            Destroy(gameObject);   
+        }
+
+        if (other.tag == "Zap")
+        {
             Destroy(gameObject);
-            
         }
 
 
