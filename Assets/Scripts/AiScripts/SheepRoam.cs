@@ -8,6 +8,7 @@ public class SheepRoam : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
+    private bool subdued;
 
     //Stun
     float stunTime = 2.5f;
@@ -30,6 +31,7 @@ public class SheepRoam : MonoBehaviour
     {
         player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
+        subdued = false;
     }
 
     private void Update()
@@ -40,7 +42,7 @@ public class SheepRoam : MonoBehaviour
         if (!playerInSightRange) Patroling();
         if (playerInSightRange) ChasePlayer();
 
-        if (Stunned)
+        if (Stunned && !subdued)
         {
             agent.speed = 0;
             stunTime -= Time.deltaTime;
@@ -101,6 +103,7 @@ public class SheepRoam : MonoBehaviour
         {
             agent.speed = 0;
             sheepScore.ScoreValue += 1;
+            subdued = true;
         }
 
         if (other.tag == "Pit")

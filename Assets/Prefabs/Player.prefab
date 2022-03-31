@@ -314,10 +314,12 @@ MonoBehaviour:
   zapBarrelTip: {fileID: 7824199059668314217}
   hookBarrelTip: {fileID: 7824199060572665164}
   gunModel: {fileID: 7824199059567875705}
+  hookShotTransform: {fileID: 0}
   zapped: {fileID: 8300000, guid: 7d7432362da985747a0bc3ae21e11cdb, type: 3}
   jump: {fileID: 8300000, guid: b8e5f4ba6a053b24386a7a43caae8ea3, type: 3}
   hooked: {fileID: 8300000, guid: c8ac5254b41f9ed40aceb2a9c0f7a48a, type: 3}
   warp: {fileID: 8300000, guid: 7293ac8fb38c3b141a14124705bc2573, type: 3}
+  slowTimeBar: {fileID: 0}
 --- !u!114 &7824199059793263413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,12 +341,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7824199059793263408}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec48d21f237312841bd0db66e0afe928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EscapedGoblins: 0
+  EscapedGoblins: 38
   score: {fileID: 0}
 --- !u!114 &992247937
 MonoBehaviour:
@@ -353,7 +355,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7824199059793263408}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec48d21f237312841bd0db66e0afe928, type: 3}
   m_Name: 
@@ -372,7 +374,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0

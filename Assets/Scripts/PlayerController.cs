@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private float rotationSpeed = 50f;
     private float maxTimeSlowAmount = 5f;
     private float currentTimeSlowAmount;
+    private float hookShotSize;
+    private float grappleRange = 35f;
     private PlayerInput playerInput;
     private InputAction moveAction;
     private InputAction jumpAction;
@@ -27,22 +30,19 @@ public class PlayerController : MonoBehaviour
     public Transform zapBarrelTip;
     public Transform hookBarrelTip;
     public Transform gunModel;
+    public Transform hookShotTransform;
     private State state;
-
     AudioSource audioSource;
-
     public AudioClip zapped;
-
     public AudioClip jump;
-
     public AudioClip hooked;
-
-    public AudioClip warp; 
+    public AudioClip warp;
+    public Image slowTimeBar; 
 
     // States
     private enum State
     {
-        Normal, HookShotFlyingPlayer
+        Normal, HookShotFlyingPlayer, HookShotThrown
     }
 
     // Called on object Awake in Scene
@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
+
+        hookShotTransform.gameObject.SetActive(false);
 
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
@@ -101,11 +103,13 @@ public class PlayerController : MonoBehaviour
         {
             Time.timeScale = 0.5f;
             currentTimeSlowAmount = Mathf.Clamp(currentTimeSlowAmount -= Time.deltaTime * 2, 0.0f, 5.0f);
+            slowTimeBar.fillAmount = Mathf.Clamp(slowTimeBar.fillAmount -= Time.deltaTime / 2.5f, 0.0f, 1.0f);
         }
         else
         {
             Time.timeScale = 1.0f;
             currentTimeSlowAmount = Mathf.Clamp(currentTimeSlowAmount += Time.deltaTime, 0.0f, 5.0f);
+            slowTimeBar.fillAmount = Mathf.Clamp(slowTimeBar.fillAmount += Time.deltaTime / 5f, 0.0f, 1.0f);
         }
         if (currentTimeSlowAmount == 0)
         {
@@ -113,8 +117,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Changes color of slow bar based on the amount of meter;
+    private void HandleSlowTimeBarColor()
+    {
+        if(currentTimeSlowAmount == 5.0f)
+        {
+            slowTimeBar.color = Color.green;
+        }
+        else
+        {
+            slowTimeBar.color = Color.blue;
+        }
+    }
+
     // Rotates Player
-    private void HandleCharacterRotation()
+    private void HandleRotations()
     {
         // Rotate player towards camera direction
         Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
@@ -158,18 +175,36 @@ public class PlayerController : MonoBehaviour
     {
         if( grappleAction.triggered)
         {
-            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit))
+            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, grappleRange))
             {
                 hook = Instantiate(hookPrefab, hit.point, Quaternion.identity);
                 hookShotPosition = hit.point;
-                state = State.HookShotFlyingPlayer;
+                hookShotSize = 0f;
+                hookShotTransform.gameObject.SetActive(true);
+                hookShotTransform.localScale = Vector3.zero;
+                state = State.HookShotThrown;
                 audioSource.PlayOneShot(hooked);
             }
+        }
+    }
+    // Handles the line that comes out of the gun
+    private void HandleHookShotThrow()
+    {
+        hookShotTransform.LookAt(hookShotPosition);
+
+        float hookShotThrowSpeed = 70f;
+        hookShotSize += hookShotThrowSpeed * Time.deltaTime;
+        hookShotTransform.localScale = new Vector3(1,1,hookShotSize);
+
+        if (hookShotSize >= Vector3.Distance(transform.position, hookShotPosition))
+        {
+            state = State.HookShotFlyingPlayer;
         }
     }
     // The actual movement that happens during the hookshot
     private void HandelHookShotMovement()
     {
+        hookShotTransform.LookAt(hookShotPosition);
         Vector3 hookShotDir = (hookShotPosition - transform.position).normalized;
         float hookShotSpeedMin = 10f;
         float hookShotSpeedMax = 40f;
@@ -184,6 +219,7 @@ public class PlayerController : MonoBehaviour
             Destroy(hook);
             state = State.Normal;
             ResetGravity();
+            StopHookShot();
         }
 
         if (jumpAction.triggered)
@@ -191,7 +227,14 @@ public class PlayerController : MonoBehaviour
             Destroy(hook);
             state = State.Normal;
             ResetGravity();
+            StopHookShot();
         }
+    }
+
+    // Sets line from hookshot to inactive
+    private void StopHookShot()
+    {
+        hookShotTransform.gameObject.SetActive(false);
     }
 
     // Resets Gravity
@@ -222,8 +265,19 @@ public class PlayerController : MonoBehaviour
                 HandleTimeSlow();
                 HandleTimeSlowTrigger();
                 HandleCharacterMovement();
-                HandleCharacterRotation();
+                HandleRotations();
                 HandleHookShotStart();
+                HandleSlowTimeBarColor();
+            break;
+
+            case State.HookShotThrown:
+                CloseGame();
+                HandleCharacterMovement();
+                HandleRotations();
+                HandleHookShotThrow();
+                HandleSlowTimeBarColor();
+                HandleTimeSlow();
+                HandleTimeSlowTrigger();
             break;
 
             case State.HookShotFlyingPlayer:
@@ -231,8 +285,9 @@ public class PlayerController : MonoBehaviour
                 HandleZap();
                 HandleTimeSlow();
                 HandleTimeSlowTrigger();
-                HandleCharacterRotation();
+                HandleRotations();
                 HandelHookShotMovement();
+                HandleSlowTimeBarColor();
                 break;
         }
     }
