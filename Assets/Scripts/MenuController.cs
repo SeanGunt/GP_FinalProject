@@ -12,9 +12,16 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private Button startButton, howToPlayButton, optionsButton, backButton, exitButton;
 
+    AudioSource audioSource;
+
+    public AudioClip menu; 
+
     // Called on object Awake in Scene
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(menu);
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
