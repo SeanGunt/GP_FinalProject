@@ -29,6 +29,16 @@ public class PlayerController : MonoBehaviour
     public Transform gunModel;
     private State state;
 
+    AudioSource audioSource;
+
+    public AudioClip zapped;
+
+    public AudioClip jump;
+
+    public AudioClip hooked;
+
+    public AudioClip warp; 
+
     // States
     private enum State
     {
@@ -38,6 +48,8 @@ public class PlayerController : MonoBehaviour
     // Called on object Awake in Scene
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+
         currentTimeSlowAmount = maxTimeSlowAmount;
 
         state = State.Normal;
@@ -62,6 +74,7 @@ public class PlayerController : MonoBehaviour
         if (zapAction.triggered)
         {
             GameObject zap = GameObject.Instantiate(zapBall, zapBarrelTip.position, Quaternion.identity);
+            audioSource.PlayOneShot(zapped);
         }
     }
 
@@ -72,6 +85,7 @@ public class PlayerController : MonoBehaviour
             if (slowTimeAction.triggered && !timeSlowed && currentTimeSlowAmount == 5.0f)
             {
                 timeSlowed = true;
+                audioSource.PlayOneShot(warp);
             }
             else if (slowTimeAction.triggered)
             {
@@ -131,6 +145,7 @@ public class PlayerController : MonoBehaviour
         if (jumpAction.triggered && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            audioSource.PlayOneShot(jump);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -148,6 +163,7 @@ public class PlayerController : MonoBehaviour
                 hook = Instantiate(hookPrefab, hit.point, Quaternion.identity);
                 hookShotPosition = hit.point;
                 state = State.HookShotFlyingPlayer;
+                audioSource.PlayOneShot(hooked);
             }
         }
     }
