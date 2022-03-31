@@ -33,8 +33,6 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip zapped;
 
-    public AudioClip jump;
-
     public AudioClip hooked;
 
     public AudioClip warp; 
@@ -145,7 +143,6 @@ public class PlayerController : MonoBehaviour
         if (jumpAction.triggered && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-            audioSource.PlayOneShot(jump);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
