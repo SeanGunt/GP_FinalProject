@@ -14,13 +14,12 @@ public class MenuController : MonoBehaviour
 
     AudioSource audioSource;
 
-    public AudioClip menu; 
+    public AudioClip buttonclick;
 
     // Called on object Awake in Scene
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(menu);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -40,12 +39,14 @@ public class MenuController : MonoBehaviour
     // Listener for startButton
     private void StartClick()
     {
+        audioSource.PlayOneShot(buttonclick);
         SceneManager.LoadScene("GamePlay");
     }
 
     // Listener for howToPlayButton
     private void HowToPlayClick()
     {
+        audioSource.PlayOneShot(buttonclick);
         menuCanvas.gameObject.SetActive(false);
         howToPlayCanvas.gameObject.SetActive(true);
         optionsCanvas.gameObject.SetActive(false);
@@ -64,6 +65,7 @@ public class MenuController : MonoBehaviour
     // Listener for backButton
     private void BackClick()
     {
+        audioSource.PlayOneShot(buttonclick);
         menuCanvas.gameObject.SetActive(true);
         howToPlayCanvas.gameObject.SetActive(false);
         optionsCanvas.gameObject.SetActive(false);
@@ -73,6 +75,7 @@ public class MenuController : MonoBehaviour
     // Listener for exitButton
     private void ExitClick()
     {
+        audioSource.PlayOneShot(buttonclick);
         Application.Quit();
     }
 }
