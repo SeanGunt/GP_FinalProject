@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -7,40 +8,58 @@ public class PauseMenu : MonoBehaviour
     InputAction pauseAction;
     public static bool gameIsPaused = false;
     public GameObject cam;
+    public GameObject pauseMenuUI;
 
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         pauseAction = playerInput.actions["Pause"];
+        pauseMenuUI.SetActive(false);
+        gameIsPaused = false;
     }
 
     void Update()
     {
-        if(pauseAction.triggered && gameIsPaused == false)
+        if (pauseAction.triggered && gameIsPaused == false)
         {
             Pause();
+            Debug.Log("Paused");
         }
-        else if(pauseAction.triggered && gameIsPaused == true)
+        else if (pauseAction.triggered && gameIsPaused == true)
         {
             Resume();
+            Debug.Log("Resumed");
         }
     }
 
-    void Pause()
+    public void Pause()
     {
         gameIsPaused = true;
         Time.timeScale = 0;
         cam.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        pauseMenuUI.SetActive(true);
     }
 
-    void Resume()
+    public void Resume()
     {
         gameIsPaused = false;
         Time.timeScale = 1.0f;
         cam.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        pauseMenuUI.SetActive(false);
+    }
+
+    public void SwitchToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quit");
     }
 }

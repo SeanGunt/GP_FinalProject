@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 9d7a7da0b9ce64d428020a1fa1d7e880
   - enabled: 1
-    path: Assets/Scenes/GamePlay.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/ArtBuild.unity
-    guid: e9ed76b9af8df5c49b57da601a8d3d13
+    path: Assets/Scenes/PrehistoricLevel.unity
+    guid: 8720c4cb4d26e1342b8b3e16f07792f0
   m_configObjects: {}
