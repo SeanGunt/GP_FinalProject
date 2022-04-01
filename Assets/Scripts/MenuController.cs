@@ -11,9 +11,7 @@ public class MenuController : MonoBehaviour
 
     [SerializeField]
     private Button startButton, howToPlayButton, optionsButton, backButton, exitButton;
-
     AudioSource audioSource;
-
     public AudioClip buttonclick;
 
     // Called on object Awake in Scene

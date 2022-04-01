@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
     // Zap Projectile insantiates at barrel tip, sets target at hit point (center of screen)
     private void HandleZap()
     {
-        if (zapAction.triggered)
+        if (zapAction.triggered && PauseMenu.gameIsPaused == false)
         {
             GameObject zap = GameObject.Instantiate(zapBall, zapBarrelTip.position, Quaternion.identity);
             audioSource.PlayOneShot(zapped);
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
     private void HandleTimeSlowTrigger()
     {
         {
-            if (slowTimeAction.triggered && !timeSlowed && currentTimeSlowAmount == 5.0f)
+            if (slowTimeAction.triggered && !timeSlowed && currentTimeSlowAmount == 5.0f && PauseMenu.gameIsPaused == false)
             {
                 timeSlowed = true;
                 audioSource.PlayOneShot(warp);
@@ -98,13 +98,13 @@ public class PlayerController : MonoBehaviour
     private void HandleTimeSlow()
     {
         // Meter for time slow that ticks down at 1 per second, the meter ticking down is multiplied by two since time is running at half speed
-        if (timeSlowed)
+        if (timeSlowed && PauseMenu.gameIsPaused == false)
         {
             Time.timeScale = 0.5f;
             currentTimeSlowAmount = Mathf.Clamp(currentTimeSlowAmount -= Time.deltaTime * 2, 0.0f, 5.0f);
             slowTimeBar.fillAmount = Mathf.Clamp(slowTimeBar.fillAmount -= Time.deltaTime / 2.5f, 0.0f, 1.0f);
         }
-        else
+        else if (!timeSlowed && PauseMenu.gameIsPaused == false)
         {
             Time.timeScale = 1.0f;
             currentTimeSlowAmount = Mathf.Clamp(currentTimeSlowAmount += Time.deltaTime, 0.0f, 5.0f);
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
     // Shoots a Raycast and creates a point for the player to travel to
     private void HandleHookShotStart()
     {
-        if( grappleAction.triggered)
+        if(grappleAction.triggered && PauseMenu.gameIsPaused == false)
         {
             if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, grappleRange))
             {
