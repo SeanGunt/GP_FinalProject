@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
     private void HandleHookShotThrow()
     {
         hookShotTransform.LookAt(hookShotPosition);
-
+        hookShotTransform.position = hookBarrelTip.position;
         float hookShotThrowSpeed = 70f;
         hookShotSize += hookShotThrowSpeed * Time.deltaTime;
         hookShotTransform.localScale = new Vector3(1,1,hookShotSize);
@@ -203,6 +203,8 @@ public class PlayerController : MonoBehaviour
     private void HandelHookShotMovement()
     {
         hookShotTransform.LookAt(hookShotPosition);
+        hookShotTransform.position = hookBarrelTip.position;
+        
         Vector3 hookShotDir = (hookShotPosition - transform.position).normalized;
         float hookShotSpeedMin = 10f;
         float hookShotSpeedMax = 40f;
