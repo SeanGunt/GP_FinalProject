@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
             if (slowTimeAction.triggered && !timeSlowed && currentTimeSlowAmount == 5.0f && PauseMenu.gameIsPaused == false)
             {
                 timeSlowed = true;
-                audioSource.PlayOneShot(warp);
+                audioSource.PlayOneShot(warp, 1.35f);
             }
             else if (slowTimeAction.triggered)
             {

@@ -8,6 +8,7 @@ public class ZapController : MonoBehaviour
    public Vector3 zapBarrel { get; set;}
    Rigidbody rb;
    Camera cam;
+   public GameObject zapParticles;
 
     void Awake()
     {
@@ -19,6 +20,7 @@ public class ZapController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Instantiate(zapParticles, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 }
