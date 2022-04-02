@@ -9,34 +9,31 @@ public class SheepRoam : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     private bool subdued;
-
     //Stun
     float stunTime = 2.5f;
     bool Stunned;
-
     //Score
     public SheepScore sheepScore;
     public DeadsheepScore deadsheepScore;
-
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
-
     //States
     public float sightRange;
     public bool playerInSightRange;
-
+    //Audio
     AudioSource audioSource;
-
     public AudioClip bleat;
+    float randomBleatTimer;
 
-    private void start()
+    private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        player = GameObject.Find("PlayerObj").transform;
+        player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         subdued = false;
+        randomBleatTimer = Random.Range(7,15);
     }
 
     private void Update()
@@ -57,6 +54,13 @@ public class SheepRoam : MonoBehaviour
                 stunTime = 2.5f;
                 Stunned = false;
             }
+        }
+
+        randomBleatTimer -= Time.deltaTime;
+        if (randomBleatTimer <= 0)
+        {
+            audioSource.PlayOneShot(bleat);
+            randomBleatTimer = Random.Range(7,15);
         }
     }
 
