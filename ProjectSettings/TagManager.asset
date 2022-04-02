@@ -9,6 +9,7 @@ TagManager:
   - Zap
   - GoblinEnd
   - RobotEnd
+  - Pit
   layers:
   - Default
   - TransparentFX
