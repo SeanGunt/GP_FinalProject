@@ -218,14 +218,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 389184043230647205}
-  player: {fileID: 0}
+  player: {fileID: 7824199059793263409, guid: a14f878e1c0e13344b35605bb60ad7dd, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
-  sheepScore: {fileID: 0}
+  sheepScore: {fileID: 7824199059793263413, guid: a14f878e1c0e13344b35605bb60ad7dd, type: 3}
   deadsheepScore: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
