@@ -27,8 +27,13 @@ public class SheepRoam : MonoBehaviour
     public float sightRange;
     public bool playerInSightRange;
 
+    AudioSource audioSource;
+
+    public AudioClip bleat;
+
     private void start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
         subdued = false;
@@ -112,6 +117,7 @@ public class SheepRoam : MonoBehaviour
             Destroy(gameObject);
 
         }
+
           if (other.tag == "Zap")
         {
             Stunned = true;
