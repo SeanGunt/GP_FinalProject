@@ -117,9 +117,9 @@ public class SheepRoam : MonoBehaviour
 
         if (other.tag == "Pit")
         {
-            deadsheepScore.DeathScoreValue += 1;
             Destroy(gameObject);
-
+            deadsheepScore.DeathScoreValue += 1;
+            
         }
 
           if (other.tag == "Zap")
