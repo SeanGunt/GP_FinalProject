@@ -8,13 +8,15 @@ public class PauseMenu : MonoBehaviour
     InputAction pauseAction;
     public static bool gameIsPaused = false;
     public GameObject cam;
-    public GameObject pauseMenuUI;
+    public GameObject pauseMenuUI, optionsMenuUI, howToPlayMenuUI;
 
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         pauseAction = playerInput.actions["Pause"];
         pauseMenuUI.SetActive(false);
+        optionsMenuUI.SetActive(false);
+        howToPlayMenuUI.SetActive(false);
         gameIsPaused = false;
     }
 
@@ -55,6 +57,25 @@ public class PauseMenu : MonoBehaviour
     public void SwitchToMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void OptionsMenu()
+    {
+        pauseMenuUI.SetActive(false);
+        optionsMenuUI.SetActive(true);
+    }
+
+    public void HowToPlayMenu()
+    {
+        pauseMenuUI.SetActive(false);
+        howToPlayMenuUI.SetActive(true);
+    }
+
+    public void Back()
+    {
+        pauseMenuUI.SetActive(true);
+        optionsMenuUI.SetActive(false);
+        howToPlayMenuUI.SetActive(false);
     }
 
     public void QuitGame()

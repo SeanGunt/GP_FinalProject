@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject menuCanvas, howToPlayCanvas, optionsCanvas, backCanvas;
+    private GameObject menuModels, menuCanvas, howToPlayCanvas, optionsCanvas, backCanvas;
 
     [SerializeField]
     private Button startButton, howToPlayButton, optionsButton, backButton, exitButton;
@@ -22,14 +22,15 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        menuModels.gameObject.SetActive(true);
         menuCanvas.gameObject.SetActive(true);
         howToPlayCanvas.gameObject.SetActive(false);
-        //optionsCanvas.gameObject.SetActive(false);
+        optionsCanvas.gameObject.SetActive(false);
         backCanvas.gameObject.SetActive(false);
 
         startButton.onClick.AddListener(StartClick);
         howToPlayButton.onClick.AddListener(HowToPlayClick);
-        //optionsButton.onClick.AddListener(OptionsClick);
+        optionsButton.onClick.AddListener(OptionsClick);
         backButton.onClick.AddListener(BackClick);
         exitButton.onClick.AddListener(ExitClick);
     }
@@ -45,6 +46,7 @@ public class MenuController : MonoBehaviour
     private void HowToPlayClick()
     {
         audioSource.PlayOneShot(buttonclick);
+        menuModels.gameObject.SetActive(false);
         menuCanvas.gameObject.SetActive(false);
         howToPlayCanvas.gameObject.SetActive(true);
         optionsCanvas.gameObject.SetActive(false);
@@ -52,18 +54,21 @@ public class MenuController : MonoBehaviour
     }
 
     // Listener for optionsButton
-    //private void OptionsClick()
-    //{
-        //menuCanvas.gameObject.SetActive(false);
-        //howToPlayCanvas.gameObject.SetActive(false);
-        //optionsCanvas.gameObject.SetActive(true);
-        //backCanvas.gameObject.SetActive(true);
-    //}
+    private void OptionsClick()
+    {
+        audioSource.PlayOneShot(buttonclick);
+        menuModels.gameObject.SetActive(false);
+        menuCanvas.gameObject.SetActive(false);
+        howToPlayCanvas.gameObject.SetActive(false);
+        optionsCanvas.gameObject.SetActive(true);
+        backCanvas.gameObject.SetActive(true);
+    }
 
     // Listener for backButton
     private void BackClick()
     {
         audioSource.PlayOneShot(buttonclick);
+        menuModels.gameObject.SetActive(true);
         menuCanvas.gameObject.SetActive(true);
         howToPlayCanvas.gameObject.SetActive(false);
         optionsCanvas.gameObject.SetActive(false);
