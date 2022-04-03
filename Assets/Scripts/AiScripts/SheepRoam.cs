@@ -12,9 +12,6 @@ public class SheepRoam : MonoBehaviour
     //Stun
     float stunTime = 2.5f;
     bool Stunned;
-    //Score
-    public SheepScore sheepScore;
-    public DeadsheepScore deadsheepScore;
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -28,6 +25,7 @@ public class SheepRoam : MonoBehaviour
     float randomBleatTimer;
     //Animation
     public Animator anim;
+    //Score
 
     private void Awake()
     {
@@ -35,7 +33,7 @@ public class SheepRoam : MonoBehaviour
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         subdued = false;
-        randomBleatTimer = Random.Range(7,15);
+        randomBleatTimer = Random.Range(7,25);
     }
 
     private void Update()
@@ -62,13 +60,10 @@ public class SheepRoam : MonoBehaviour
         if (randomBleatTimer <= 0)
         {
             audioSource.PlayOneShot(bleat);
-            randomBleatTimer = Random.Range(7,15);
+            randomBleatTimer = Random.Range(7,25);
         }
 
-        //animation
         anim.SetFloat("Speed", agent.speed);
-
-
     }
 
     private void Patroling()
@@ -117,16 +112,15 @@ public class SheepRoam : MonoBehaviour
     {
         if (other.tag == "Pen")
         {
+            SheepScore.instance.IncreaseScore();
             agent.speed = 0;
-            sheepScore.ScoreValue += 1;
             subdued = true;
         }
 
         if (other.tag == "Pit")
         {
             Destroy(gameObject);
-            deadsheepScore.DeathScoreValue += 1;
-            
+            DeadsheepScore.instance.IncreaseScore();
         }
 
           if (other.tag == "Zap")

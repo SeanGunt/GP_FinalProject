@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0a7021963cb384ab2bda086823c917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zapParticles: {fileID: 4246586133985938941, guid: ca50bad3d2ddf0c4d8ca0d5b700c1979, type: 3}
+  zapParticlesPrefab: {fileID: 4246586133985938941, guid: ca50bad3d2ddf0c4d8ca0d5b700c1979, type: 3}
 --- !u!54 &5472314049174828959
 Rigidbody:
   m_ObjectHideFlags: 0

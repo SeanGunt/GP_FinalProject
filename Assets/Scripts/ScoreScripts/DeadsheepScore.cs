@@ -1,22 +1,35 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DeadsheepScore : MonoBehaviour
 {
-    public float DeathScoreValue;
-    public Text Deathscore;
-
-    // Start is called before the first frame update
-    void Start()
+    public static DeadsheepScore instance;
+    int deadSheepScore = 0;
+    public GameObject loseCanvas;
+     
+     IEnumerator ChangeScenes()
     {
-        Deathscore.text = " " + DeathScoreValue.ToString();
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene(0);
     }
+     void Awake()
+     {
+         if (instance == null)
+         {
+             instance = this;
+         }
+         loseCanvas.SetActive(false);
+     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+     public void IncreaseScore()
+     {
+         deadSheepScore += 1;
+         if (deadSheepScore >= 2)
+         {
+             loseCanvas.SetActive(true);
+             StartCoroutine(ChangeScenes());
+             PlayerController.playerSpeed = 0f;
+         }
+     }
 }

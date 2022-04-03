@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 hookShotPosition;
     private bool groundedPlayer;
     private bool timeSlowed;
-    private float playerSpeed = 12.0f;
+    public static float playerSpeed;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
     private float rotationSpeed = 50f;
@@ -36,7 +36,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip zapped;
     public AudioClip hooked;
     public AudioClip warp;
-    public Image slowTimeBar; 
+    public Image slowTimeBar;
+    public Animator animator;
+    public LayerMask ignoreGrapple;
 
     // States
     private enum State
@@ -47,12 +49,12 @@ public class PlayerController : MonoBehaviour
     // Called on object Awake in Scene
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-
+        playerSpeed = 12f;
         currentTimeSlowAmount = maxTimeSlowAmount;
 
         state = State.Normal;
         cameraTransform = Camera.main.transform;
+        audioSource = GetComponent<AudioSource>();
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
 
@@ -137,7 +139,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation =  Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         // Rotates the gun up and down based off camera
-        Quaternion gunRotationTarget = Quaternion.Euler(cameraTransform.eulerAngles);
+        Quaternion gunRotationTarget = Quaternion.Euler(0, cameraTransform.eulerAngles.y + 90f, cameraTransform.eulerAngles.x);
         gunModel.rotation = Quaternion.Lerp(gunModel.rotation, gunRotationTarget, rotationSpeed * Time.deltaTime);
     }
 
@@ -156,11 +158,22 @@ public class PlayerController : MonoBehaviour
         move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
         move.y = 0;
         controller.Move(move * Time.deltaTime * playerSpeed);
+        if (move.x > 0 || move.x < 0 || move.z > 0 || move.z < 0)
+        {
+            animator.SetBool("Running", true);
+            animator.SetBool("Idleing", false);
+        }
+        else
+        {
+            animator.SetBool("Running", false);
+            animator.SetBool("Idleing", true);
+        }
 
         // Jump
         if (jumpAction.triggered && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            animator.SetTrigger("Jump");
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -173,7 +186,7 @@ public class PlayerController : MonoBehaviour
     {
         if(grappleAction.triggered && PauseMenu.gameIsPaused == false)
         {
-            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, grappleRange))
+            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, grappleRange, ~ignoreGrapple))
             {
                 hook = Instantiate(hookPrefab, hit.point, Quaternion.identity);
                 hookShotPosition = hit.point;
@@ -202,6 +215,7 @@ public class PlayerController : MonoBehaviour
     // The actual movement that happens during the hookshot
     private void HandelHookShotMovement()
     {
+        animator.SetBool("Idleing", true);
         hookShotTransform.LookAt(hookShotPosition);
         hookShotTransform.position = hookBarrelTip.position;
         

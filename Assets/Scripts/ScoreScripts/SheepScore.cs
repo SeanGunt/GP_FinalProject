@@ -1,22 +1,40 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SheepScore : MonoBehaviour
 {
-    public float ScoreValue;
+    public static SheepScore instance;
+    int sheepScoreValue = 0;
     public Text score;
+    public GameObject winCanvas;
 
-    // Start is called before the first frame update
-    void Start()
+    IEnumerator ChangeScenes()
     {
-        score.text = " " + ScoreValue.ToString();
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene(0);
+    }
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        score.text = sheepScoreValue + " / 3 ";
+        winCanvas.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncreaseScore()
     {
+        sheepScoreValue += 1;
+        score.text = sheepScoreValue + " / 3";
         
+        if( sheepScoreValue >= 3)
+        {
+            winCanvas.SetActive(true);
+            StartCoroutine(ChangeScenes());
+            PlayerController.playerSpeed = 0f;
+        }
     }
 }
