@@ -26,6 +26,8 @@ public class SheepRoam : MonoBehaviour
     AudioSource audioSource;
     public AudioClip bleat;
     float randomBleatTimer;
+    //Animation
+    public Animator anim;
 
     private void Awake()
     {
@@ -62,6 +64,11 @@ public class SheepRoam : MonoBehaviour
             audioSource.PlayOneShot(bleat);
             randomBleatTimer = Random.Range(7,15);
         }
+
+        //animation
+        anim.SetFloat("Speed", agent.speed);
+
+
     }
 
     private void Patroling()
