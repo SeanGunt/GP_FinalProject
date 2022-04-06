@@ -129,5 +129,18 @@ public class SheepRoam : MonoBehaviour
             Debug.Log("Collided");
             Destroy(other.gameObject);
         }
+
+        if (other.tag == "InnerPit")
+        {
+            this.enabled = false;
+            GetComponent<WayPoint>().enabled = true;
+            agent.enabled = false;
+
+
+        }
+
+
+
+
     }
 }

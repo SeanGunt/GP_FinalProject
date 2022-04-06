@@ -10,6 +10,14 @@ TagManager:
   - GoblinEnd
   - RobotEnd
   - Pit
+  - InnerPit
+  - CenterPit
+  - OutterPit
+  - CenterPit2
+  - OutterPit2
+  - Waypoint
+  - CenterPit3
+  - OutterPit3
   layers:
   - Default
   - TransparentFX
