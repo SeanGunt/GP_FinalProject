@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Collections;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     CharacterController controller;
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private Transform cameraTransform;
     public Transform zapBarrelTip;
     public Transform hookBarrelTip;
-    public Transform gunModel;
+    public Transform rightElbow;
     public Transform hookShotTransform;
     private State state;
     AudioSource audioSource;
@@ -44,6 +46,12 @@ public class PlayerController : MonoBehaviour
     private enum State
     {
         Normal, HookShotFlyingPlayer, HookShotThrown
+    }
+
+    IEnumerator ChangeScenes()
+    {
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene(0);
     }
 
     // Called on object Awake in Scene
@@ -131,6 +139,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "TimeCore")
+        {
+            TimeCore timeCore = other.GetComponent<TimeCore>();
+            timeCore.HandleTimeCoreInteraction();
+            StartCoroutine(ChangeScenes());
+        }
+    }
+
     // Rotates Player
     private void HandleRotations()
     {
@@ -139,8 +157,8 @@ public class PlayerController : MonoBehaviour
         transform.rotation =  Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         // Rotates the gun up and down based off camera
-        Quaternion gunRotationTarget = Quaternion.Euler(0, cameraTransform.eulerAngles.y + 90f, cameraTransform.eulerAngles.x);
-        gunModel.rotation = Quaternion.Lerp(gunModel.rotation, gunRotationTarget, rotationSpeed * Time.deltaTime);
+        Quaternion rightElbowTargetRotation = Quaternion.Euler(cameraTransform.eulerAngles);
+        rightElbow.rotation = Quaternion.Lerp(rightElbow.rotation, rightElbowTargetRotation, rotationSpeed * Time.deltaTime);
     }
 
     // Character Movement

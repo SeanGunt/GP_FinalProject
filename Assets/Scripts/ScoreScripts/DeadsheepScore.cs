@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class DeadsheepScore : MonoBehaviour
 {
     public static DeadsheepScore instance;
-    public int deadSheepScore = 0;
+    [NonSerializedAttribute] public int deadSheepScore = 0;
     public GameObject loseCanvas;
      
      IEnumerator ChangeScenes()

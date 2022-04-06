@@ -18,6 +18,7 @@ TagManager:
   - Waypoint
   - CenterPit3
   - OutterPit3
+  - TimeCore
   layers:
   - Default
   - TransparentFX

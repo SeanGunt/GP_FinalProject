@@ -309,7 +309,7 @@ MonoBehaviour:
   hookPrefab: {fileID: 1869752548221351235, guid: 78da01af6e601c94988ee8d9239bc84d, type: 3}
   zapBarrelTip: {fileID: 1958700373}
   hookBarrelTip: {fileID: 574347003}
-  gunModel: {fileID: 1800626250960636247}
+  rightElbow: {fileID: 4126699033792746788}
   hookShotTransform: {fileID: 932167951}
   zapped: {fileID: 8300000, guid: 7d7432362da985747a0bc3ae21e11cdb, type: 3}
   hooked: {fileID: 8300000, guid: b444a370bb6615144b6492c90a65eb84, type: 3}
@@ -318,7 +318,7 @@ MonoBehaviour:
   animator: {fileID: 42801215}
   ignoreGrapple:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 24832
 --- !u!114 &1884796688440175660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 0}
   winCanvas: {fileID: 0}
+  timeCore: {fileID: 0}
 --- !u!114 &63529228507334122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +361,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   innerTrigger: {fileID: 0}
+  innerTrigger2: {fileID: 0}
+  innerTrigger3: {fileID: 0}
 --- !u!82 &5185338079905355140
 AudioSource:
   m_ObjectHideFlags: 0
@@ -551,6 +554,11 @@ GameObject:
 --- !u!4 &4079745325688070124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b33544cc0cce50d4d92b3ca9ebcfda92, type: 3}
+  m_PrefabInstance: {fileID: 4545420374100146183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4126699033792746788 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8768392650678735581, guid: b33544cc0cce50d4d92b3ca9ebcfda92, type: 3}
   m_PrefabInstance: {fileID: 4545420374100146183}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1800626250960636247 stripped

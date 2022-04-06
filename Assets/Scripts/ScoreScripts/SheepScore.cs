@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,15 +7,11 @@ using UnityEngine.SceneManagement;
 public class SheepScore : MonoBehaviour
 {
     public static SheepScore instance;
-    int sheepScoreValue = 0;
+    [NonSerializedAttribute] public int sheepScoreValue = 2;
     public Text score;
     public GameObject winCanvas;
+    public GameObject timeCore;
 
-    IEnumerator ChangeScenes()
-    {
-        yield return new WaitForSeconds(4);
-        SceneManager.LoadScene(0);
-    }
     void Awake()
     {
         if (instance == null)
@@ -23,6 +20,7 @@ public class SheepScore : MonoBehaviour
         }
         score.text = sheepScoreValue + " / 3 ";
         winCanvas.SetActive(false);
+        timeCore.SetActive(false);
     }
 
     public void IncreaseScore()
@@ -32,9 +30,7 @@ public class SheepScore : MonoBehaviour
         
         if( sheepScoreValue >= 3)
         {
-            winCanvas.SetActive(true);
-            StartCoroutine(ChangeScenes());
-            PlayerController.playerSpeed = 0f;
+            timeCore.SetActive(true);
         }
     }
 }
