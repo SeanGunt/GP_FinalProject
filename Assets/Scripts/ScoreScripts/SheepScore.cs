@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SheepScore : MonoBehaviour
 {
     public static SheepScore instance;
-    [NonSerializedAttribute] public int sheepScoreValue = 2;
+    [NonSerializedAttribute] public int sheepScoreValue = 0;
     public Text score;
     public GameObject winCanvas;
     public GameObject timeCore;
