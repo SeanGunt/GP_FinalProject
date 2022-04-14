@@ -39,7 +39,7 @@ public class MenuController : MonoBehaviour
     private void StartClick()
     {
         audioSource.PlayOneShot(buttonclick);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
 
     // Listener for howToPlayButton

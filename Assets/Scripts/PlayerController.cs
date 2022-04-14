@@ -50,8 +50,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ChangeScenes()
     {
+        BGMusic.audioSource.Stop();
         yield return new WaitForSeconds(4);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(4);
     }
 
     // Called on object Awake in Scene
@@ -108,13 +109,13 @@ public class PlayerController : MonoBehaviour
     private void HandleTimeSlow()
     {
         // Meter for time slow that ticks down at 1 per second, the meter ticking down is multiplied by two since time is running at half speed
-        if (timeSlowed && PauseMenu.gameIsPaused == false)
+        if (timeSlowed && PauseMenu.gameIsPaused == false && (PlayerPrefs.GetInt("TimeSlowCheat") == 1 ? false:true))
         {
             Time.timeScale = 0.5f;
             currentTimeSlowAmount = Mathf.Clamp(currentTimeSlowAmount -= Time.deltaTime * 2, 0.0f, 5.0f);
             slowTimeBar.fillAmount = Mathf.Clamp(slowTimeBar.fillAmount -= Time.deltaTime / 2.5f, 0.0f, 1.0f);
         }
-        else if (!timeSlowed && PauseMenu.gameIsPaused == false)
+        else if (!timeSlowed && PauseMenu.gameIsPaused == false && (PlayerPrefs.GetInt("TimeSlowCheat") == 1 ? false:true))
         {
             Time.timeScale = 1.0f;
             currentTimeSlowAmount = Mathf.Clamp(currentTimeSlowAmount += Time.deltaTime, 0.0f, 5.0f);
@@ -123,6 +124,18 @@ public class PlayerController : MonoBehaviour
         if (currentTimeSlowAmount == 0)
         {
             timeSlowed = false;
+        }
+    }
+
+    private void HandleTimeSlowCheat()
+    {
+        if (timeSlowed && PauseMenu.gameIsPaused == false && (PlayerPrefs.GetInt("TimeSlowCheat") == 0 ? false:true))
+        {
+            Time.timeScale = 0.5f;
+        }
+        else if (!timeSlowed && PauseMenu.gameIsPaused == false && (PlayerPrefs.GetInt("TimeSlowCheat") == 0 ? false:true))
+        {
+            Time.timeScale = 1.0f;
         }
     }
 
@@ -146,6 +159,18 @@ public class PlayerController : MonoBehaviour
             TimeCore timeCore = other.GetComponent<TimeCore>();
             timeCore.HandleTimeCoreInteraction();
             StartCoroutine(ChangeScenes());
+        }
+        if (other.tag == "PreTel")
+        {
+            SceneManager.LoadScene(1);
+        }
+        if (other.tag == "CasTel")
+        {
+            SceneManager.LoadScene(2);
+        }
+        if (other.tag == "CityTel")
+        {
+            SceneManager.LoadScene(3);
         }
     }
 
@@ -295,6 +320,7 @@ public class PlayerController : MonoBehaviour
                 CloseGame();
                 HandleZap();
                 HandleTimeSlow();
+                HandleTimeSlowCheat();
                 HandleTimeSlowTrigger();
                 HandleCharacterMovement();
                 HandleRotations();
@@ -309,6 +335,7 @@ public class PlayerController : MonoBehaviour
                 HandleHookShotThrow();
                 HandleSlowTimeBarColor();
                 HandleTimeSlow();
+                HandleTimeSlowCheat();
                 HandleTimeSlowTrigger();
             break;
 
@@ -316,6 +343,7 @@ public class PlayerController : MonoBehaviour
                 CloseGame();
                 HandleZap();
                 HandleTimeSlow();
+                HandleTimeSlowCheat();
                 HandleTimeSlowTrigger();
                 HandleRotations();
                 HandelHookShotMovement();

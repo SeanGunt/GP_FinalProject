@@ -161,7 +161,7 @@
                     "id": "78802dba-c114-4ba7-a888-a5e5be3530e9",
                     "path": "<XInputController>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=25,y=25)",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,

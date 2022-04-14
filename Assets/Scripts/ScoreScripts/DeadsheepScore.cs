@@ -11,8 +11,9 @@ public class DeadsheepScore : MonoBehaviour
      
      IEnumerator ChangeScenes()
     {
+        BGMusic.audioSource.Stop();
         yield return new WaitForSeconds(4);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(4);
     }
      void Awake()
      {

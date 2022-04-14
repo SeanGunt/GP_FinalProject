@@ -19,6 +19,9 @@ TagManager:
   - CenterPit3
   - OutterPit3
   - TimeCore
+  - PreTel
+  - CasTel
+  - CityTel
   layers:
   - Default
   - TransparentFX
