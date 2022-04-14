@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PrehistoricLevel.unity
     guid: 8720c4cb4d26e1342b8b3e16f07792f0
+  - enabled: 1
+    path: Assets/Scenes/CastleLevel.unity
+    guid: 6346f1c31082cbc47ac2ed1b613e944c
+  - enabled: 1
+    path: Assets/Scenes/CityLevel.unity
+    guid: a2d28ba6315e6ba48b1654a82265f72e
+  - enabled: 1
+    path: Assets/Scenes/Hub.unity
+    guid: d317171095303cc409e5dfcd728823af
   m_configObjects: {}
