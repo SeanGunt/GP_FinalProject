@@ -6,11 +6,14 @@ public class TimeCore : MonoBehaviour
     public GameObject winCanvas;
     float rotationSpeed = 50f;
     private Vector3 timeCoreStartPos;
+    private Vector3 otherStartPos;
     float amplitude = 1.5f;
 
     void Awake()
     {
         timeCoreStartPos = this.transform.position;
+        otherStartPos = this.transform.position;
+
     }
     public void HandleTimeCoreInteraction()
     {
@@ -22,7 +25,6 @@ public class TimeCore : MonoBehaviour
     void Update()
     {
         HandleMovemement();
-        Debug.Log(timeCoreStartPos);
     }
 
     private void HandleMovemement()
@@ -38,7 +40,7 @@ public class TimeCore : MonoBehaviour
     
     private void HandleBobbing()
     {
-        this.transform.position = new Vector3(timeCoreStartPos.x, (Mathf.Sin(timeCoreStartPos.y += amplitude * Time.deltaTime) * 0.5f) + 3f,
+        this.transform.position = new Vector3(timeCoreStartPos.x, (Mathf.Sin(timeCoreStartPos.y += amplitude * Time.deltaTime) * 0.5f) + otherStartPos.y,
             timeCoreStartPos.z);
     }
 }

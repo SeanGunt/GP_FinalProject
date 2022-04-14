@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PitTrigger : MonoBehaviour
@@ -42,10 +40,5 @@ public class PitTrigger : MonoBehaviour
         {
             innerTrigger3.SetActive(false);
         }
-
-
     }
-
-
-
 }

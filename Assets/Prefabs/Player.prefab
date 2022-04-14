@@ -217,9 +217,7 @@ GameObject:
   - component: {fileID: 7824199059793263411}
   - component: {fileID: 7824199059793263410}
   - component: {fileID: 7824199059793263412}
-  - component: {fileID: 1884796688440175660}
-  - component: {fileID: 63529228507334122}
-  - component: {fileID: 8918984255265469378}
+  - component: {fileID: 1781115894335616461}
   - component: {fileID: 5185338079905355140}
   m_Layer: 7
   m_Name: Player
@@ -288,7 +286,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 3.51
   m_Radius: 0.85
-  m_SlopeLimit: 45
+  m_SlopeLimit: 100
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
@@ -319,35 +317,7 @@ MonoBehaviour:
   ignoreGrapple:
     serializedVersion: 2
     m_Bits: 24832
---- !u!114 &1884796688440175660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7824199059793263408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22c30aecc87dfdb4897cc618008e9e10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: {fileID: 0}
-  winCanvas: {fileID: 0}
-  timeCore: {fileID: 0}
---- !u!114 &63529228507334122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7824199059793263408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0b3280c7eca8984b8be604d469ed655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loseCanvas: {fileID: 0}
---- !u!114 &8918984255265469378
+--- !u!114 &1781115894335616461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
