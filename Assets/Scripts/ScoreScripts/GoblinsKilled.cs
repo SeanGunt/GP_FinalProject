@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GoblinsEscapedscore : MonoBehaviour
+public class GoblinsKilled : MonoBehaviour
 {
-    public float EscapedGoblins = 0;
+    public float GoblinsKilledNum;
     public Text score;
 
     // Start is called before the first frame update
     void Start()
     {
-        score.text = " " + EscapedGoblins.ToString();
+        score.text = " " + GoblinsKilledNum.ToString();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
 
+    }
 }

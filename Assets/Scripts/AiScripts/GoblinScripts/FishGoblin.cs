@@ -13,7 +13,9 @@ public class FishGoblin : MonoBehaviour
     public AudioClip grunt;
     float randomGruntTimer;
 
+    //Score Script refrances
     public GoblinsEscapedscore goblinsEscapedscore;
+    public GoblinsKilled goblinsKilled;
 
     private void Awake()
     {
@@ -45,6 +47,7 @@ public class FishGoblin : MonoBehaviour
 
         if (other.tag == "Zap")
         {
+            goblinsKilled.GoblinsKilledNum += 1;
             Destroy(gameObject);
         }
     }
