@@ -1,31 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Collections;
 
 public class SpawnerScript : MonoBehaviour
 {
     public Transform enemyPrefab;
     public Transform spawnPoint;
-
-    public float timeBetweenWaves = 5f;
-    private float countdown = 2f;
-
+    private float timeBetweenWaves = 3.5f;
+    public static float countdown;
     private int EnemyPerWave = 1;
     
-
-
-    // Update is called once per frame
+    void Awake()
+    {
+        countdown = 15f;
+    }
     void Update()
     {
+        countdown -= Time.deltaTime;
+        Debug.Log(countdown);
         if (countdown <= 0f)
         {
             SpawnWave();
             countdown = timeBetweenWaves;
         }
-
-        countdown -= Time.deltaTime;
-
     }
 
     void SpawnWave()
@@ -34,16 +30,10 @@ public class SpawnerScript : MonoBehaviour
         {
             SpawnEnemy();
         }
-
-
     }
 
     void SpawnEnemy()
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
-
-
-
-
 }

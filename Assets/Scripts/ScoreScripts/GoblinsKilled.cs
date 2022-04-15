@@ -1,22 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GoblinsKilled : MonoBehaviour
 {
-    public float GoblinsKilledNum;
+    public static GoblinsKilled Instance;
+    [NonSerializedAttribute] public float killed;
     public Text score;
+    public GameObject timeCore;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        score.text = " " + GoblinsKilledNum.ToString();
+        if ( Instance == null)
+        {
+            Instance = this;
+        }
+
+        score.text = "Killed: " + killed.ToString();
+        timeCore.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    void DestroyAllGoblins()
     {
+        GameObject[] goblins = GameObject.FindGameObjectsWithTag("Goblin");
+        foreach(GameObject goblin in goblins)
+        GameObject.Destroy(goblin);
+        SpawnerScript.countdown = float.PositiveInfinity;
+    }
 
+    public void IncreaseScore()
+    {
+        killed += 1;
+        score.text = "Killed: " + killed.ToString();
+        if (killed >= 35)
+        {
+            DestroyAllGoblins();
+            timeCore.SetActive(true);
+        }
     }
 }

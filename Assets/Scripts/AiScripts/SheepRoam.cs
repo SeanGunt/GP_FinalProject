@@ -68,6 +68,10 @@ public class SheepRoam : MonoBehaviour
 
     private void Patroling()
     {
+        if (!subdued)
+        {
+            agent.speed = 10f;
+        }
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -93,6 +97,10 @@ public class SheepRoam : MonoBehaviour
 
     private void ChasePlayer()
     {
+        if (!subdued)
+        {
+            agent.speed = 20f;
+        }
         Vector3 dirToPlayer = transform.position - player.transform.position;
 
         Vector3 newPos = transform.position + dirToPlayer;
@@ -135,12 +143,6 @@ public class SheepRoam : MonoBehaviour
             this.enabled = false;
             GetComponent<WayPoint>().enabled = true;
             agent.enabled = false;
-
-
         }
-
-
-
-
     }
 }

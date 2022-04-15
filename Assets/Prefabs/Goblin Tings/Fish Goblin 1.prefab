@@ -212,8 +212,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.57266235
-  m_Height: 2.6444416
+  m_Radius: 0.72
+  m_Height: 2.88
   m_Direction: 1
   m_Center: {x: 0.057235718, y: 0.3222208, z: 0.07254219}
 --- !u!195 &4390372037251855043
@@ -252,8 +252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movePositionTransform: {fileID: 4879016709377724038, guid: 6f67b31963d5a5c4a9f2b1f39c9756b2, type: 3}
   grunt: {fileID: 8300000, guid: 0439e2ca703b9f143b192ba4ee056c27, type: 3}
-  goblinsEscapedscore: {fileID: 5799614438569020449, guid: a14f878e1c0e13344b35605bb60ad7dd, type: 3}
-  goblinsKilled: {fileID: 9129420424711876900, guid: a14f878e1c0e13344b35605bb60ad7dd, type: 3}
 --- !u!54 &7883939137028147961
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -326,7 +324,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -356,7 +354,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 1.01
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4390372037251855103, guid: e88961098cb46ab4a9f17e575d4f766f, type: 3}
   spawnPoint: {fileID: 0}
-  timeBetweenWaves: 2
+  timeBetweenWaves: 3

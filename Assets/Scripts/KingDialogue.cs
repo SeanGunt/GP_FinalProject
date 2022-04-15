@@ -3,22 +3,31 @@ using UnityEngine;
 public class KingDialogue : MonoBehaviour
 {
     public GameObject player;
-    public GameObject dialogueBox;
+    public GameObject normalDialogue;
+    public GameObject winDialogue;
+
     void Awake()
     {
-        
+        winDialogue.SetActive(false);
     }
-
     void Update()
     {
-        float distance = Vector3.Distance(this.transform.position, player.transform.position);
-            if (distance < 10f)
+        if (GoblinsKilled.Instance.killed < 35)
+        {
+            float distance = Vector3.Distance(this.transform.position, player.transform.position);
+            if (distance < 15f)
             {
-                dialogueBox.SetActive(true);
+                normalDialogue.SetActive(true);
             }
             else
             {
-                dialogueBox.SetActive(false);
+                normalDialogue.SetActive(false);
             }
+        }
+        else if (GoblinsKilled.Instance.killed >= 35)
+        {
+            winDialogue.SetActive(true);
+            normalDialogue.SetActive(false);
+        }
     }
 }

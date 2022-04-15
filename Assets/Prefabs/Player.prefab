@@ -218,8 +218,6 @@ GameObject:
   - component: {fileID: 7824199059793263410}
   - component: {fileID: 7824199059793263412}
   - component: {fileID: 1781115894335616461}
-  - component: {fileID: 5799614438569020449}
-  - component: {fileID: 9129420424711876900}
   - component: {fileID: 5185338079905355140}
   m_Layer: 7
   m_Name: Player
@@ -334,32 +332,6 @@ MonoBehaviour:
   innerTrigger: {fileID: 0}
   innerTrigger2: {fileID: 0}
   innerTrigger3: {fileID: 0}
---- !u!114 &5799614438569020449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7824199059793263408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec48d21f237312841bd0db66e0afe928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EscapedGoblins: 0
-  score: {fileID: 0}
---- !u!114 &9129420424711876900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7824199059793263408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80ceb654c5498dd47b6c99aafc6875a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &5185338079905355140
 AudioSource:
   m_ObjectHideFlags: 0
