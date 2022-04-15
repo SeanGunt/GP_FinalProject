@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 2691144835983658394}
   - component: {fileID: 2691144835983658395}
   - component: {fileID: 2108060056682223080}
+  - component: {fileID: 5976943647591904090}
   - component: {fileID: 8420606763950568865}
   - component: {fileID: 576721418974118670}
   m_Layer: 0
@@ -216,7 +217,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 16
   m_ObstacleAvoidanceType: 4
 --- !u!114 &2108060056682223080
 MonoBehaviour:
@@ -230,9 +231,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8375eb9b5c4387045b1936752d658a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movePositionTransform: {fileID: 2595093795166091716, guid: 3af3664229df81f429871ebe1738b07f, type: 3}
+  movePositionTransform: {fileID: 4879016709377724038, guid: 6f67b31963d5a5c4a9f2b1f39c9756b2, type: 3}
   grunt: {fileID: 8300000, guid: 0439e2ca703b9f143b192ba4ee056c27, type: 3}
-  goblinsEscapedscore: {fileID: 571014207478841413, guid: a14f878e1c0e13344b35605bb60ad7dd, type: 3}
+  goblinsEscapedscore: {fileID: 5799614438569020449, guid: a14f878e1c0e13344b35605bb60ad7dd, type: 3}
+--- !u!114 &5976943647591904090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2691144835983658393}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566ea4c1801ad374d931726cb470bfef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeed: 7
+  TurningSpeed: 3
 --- !u!54 &8420606763950568865
 Rigidbody:
   m_ObjectHideFlags: 0
