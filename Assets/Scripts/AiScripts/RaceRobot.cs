@@ -21,7 +21,10 @@ public class RaceRobot : MonoBehaviour
     //Slow
     float slowTime = 2.5f;
     bool Slowed;
-    
+
+    //Animation
+    public Animator anim;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -52,6 +55,8 @@ public class RaceRobot : MonoBehaviour
                 Slowed = false;
             }
         }
+
+        anim.SetFloat("Speed", agent.speed);
     }
 
     void OnTriggerEnter(Collider other)

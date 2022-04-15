@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4e4f038d97ab142a0477e9efcf9295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 5144462616595081219}
   movePositionTransform: {fileID: 0}
   robot: {fileID: 8300000, guid: 9e1ccfd303dc6364d9ece68aa77cdbbb, type: 3}
 --- !u!82 &3137581528937458996
