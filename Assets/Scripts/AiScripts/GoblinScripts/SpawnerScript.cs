@@ -16,7 +16,7 @@ public class SpawnerScript : MonoBehaviour
     void Update()
     {
         countdown -= Time.deltaTime;
-        Debug.Log(countdown);
+        //Debug.Log(countdown);
         if (countdown <= 0f)
         {
             SpawnWave();

@@ -52,6 +52,8 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         pauseMenuUI.SetActive(false);
+        optionsMenuUI.SetActive(false);
+        howToPlayMenuUI.SetActive(false);
     }
 
     public void SwitchToMainMenu()

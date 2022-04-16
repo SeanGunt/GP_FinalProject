@@ -17,7 +17,7 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField]
     Toggle cheatToggle;
 
-    void Awake()
+    void Start()
     {
         //sets default playerprefs if they don't exist
         if (!PlayerPrefs.HasKey("GameVolume"))
@@ -67,13 +67,8 @@ public class OptionsMenu : MonoBehaviour
         cheatToggle.isOn = PlayerPrefs.GetInt("TimeSlowCheat") == 1 ? true:false; //converts int to boolean
 
         //sets each setting
-        SetVolume(volumeSlider.value);
-        SetGraphics(graphicsDropdown.value);
-        SetTimeSlowCheat(cheatToggle.isOn);
-
-        //loggies
-        Debug.Log("Volume: " + PlayerPrefs.GetFloat("GameVolume"));
-        Debug.Log("Graphics: " + PlayerPrefs.GetInt("Graphics"));
-        //Debug.Log("Time Slow Cheat: " + PlayerPrefs.GetInt("TimeSlowCheat") == 1 ? true:false); //error idk why :(
+        SetVolume(PlayerPrefs.GetFloat("GameVolume"));
+        SetGraphics(PlayerPrefs.GetInt("Graphics"));
+        SetTimeSlowCheat(PlayerPrefs.GetInt("TimeSlowCheat") == 1 ? true:false);
     }
 }
