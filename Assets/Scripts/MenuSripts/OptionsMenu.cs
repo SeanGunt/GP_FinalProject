@@ -41,7 +41,7 @@ public class OptionsMenu : MonoBehaviour
         mixer.SetFloat("masterVolume", Mathf.Log10(sliderValue) * 20);
         PlayerPrefs.SetFloat("GameVolume", sliderValue);
 
-        Debug.Log("Volume: " + PlayerPrefs.GetFloat("GameVolume"));
+        //Debug.Log("Volume: " + PlayerPrefs.GetFloat("GameVolume"));
     }
 
     public void SetGraphics(int qualityIndex)
@@ -50,7 +50,7 @@ public class OptionsMenu : MonoBehaviour
         QualitySettings.SetQualityLevel(qualityIndex);
         PlayerPrefs.SetInt("Graphics", qualityIndex);
 
-        Debug.Log("Graphics: " + PlayerPrefs.GetInt("Graphics"));
+        //Debug.Log("Graphics: " + PlayerPrefs.GetInt("Graphics"));
     }
 
     public void SetTimeSlowCheat(bool cheatBool)

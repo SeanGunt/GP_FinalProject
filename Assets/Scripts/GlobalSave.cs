@@ -17,4 +17,9 @@ public class GlobalSave : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    void Update()
+    {
+        Debug.Log(timeCoreScore);
+    }
 }

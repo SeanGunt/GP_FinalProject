@@ -23,6 +23,7 @@ TagManager:
   - CasTel
   - CityTel
   - Goblin
+  - PlayerEnd
   layers:
   - Default
   - TransparentFX

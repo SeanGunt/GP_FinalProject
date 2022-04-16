@@ -160,6 +160,10 @@ public class PlayerController : MonoBehaviour
             timeCore.HandleTimeCoreInteraction();
             StartCoroutine(ChangeScenes());
         }
+        if (other.tag == "PlayerEnd")
+        {
+            RaceWin.Instance.PlayerWin();
+        }
         if (other.tag == "PreTel")
         {
             SceneManager.LoadScene(1);
