@@ -57,6 +57,18 @@ public class OptionsMenu : MonoBehaviour
     {
         //assigns cheat playerpref (to be used as conditional in time slow mechanic)
         PlayerPrefs.SetInt("TimeSlowCheat", cheatBool ? 1:0); //converts boolean to int
+
+        if (GameObject.FindWithTag("CheatIndicator") != null)
+        {
+            if (PlayerPrefs.GetInt("TimeSlowCheat") == 1 ? false:true)
+            {
+                GameObject.FindWithTag("CheatIndicator").SetActive(true);
+            }
+            else
+            {
+                GameObject.FindWithTag("CheatIndicator").SetActive(false);
+            }
+        }
     }
 
     void LoadValues()
