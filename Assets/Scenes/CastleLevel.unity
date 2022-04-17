@@ -7986,7 +7986,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937701340}
   m_LocalRotation: {x: 0.08715574, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: -43.650864, y: 21.416355, z: 21.154963}
+  m_LocalPosition: {x: -43.650555, y: 21.416355, z: 21.154963}
   m_LocalScale: {x: 1.2, y: 1.7511597, z: 1.048841}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8218,7 +8218,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "I needeth thy help! An explosion did free all the goblins in the dungeon,
     and they art\nhead\u2019d f\u2019r the town! Saveth the town, and thee shall
-    receiveth thy gem. 35 should do! However, if 5 enter'th the town, we are all
+    receiveth thy gem. 30 should do! However, if 5 enter'th the town, we are all
     doomed!"
 --- !u!222 &986267591
 CanvasRenderer:
@@ -9754,7 +9754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4881289780862512331, guid: ce6c7c11f9cb87c4888c35158a30da8b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -43.650864
+      value: -43.650555
       objectReference: {fileID: 0}
     - target: {fileID: 4881289780862512331, guid: ce6c7c11f9cb87c4888c35158a30da8b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11718,6 +11718,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1506966937907576026, guid: d74c53267e144184a9f917f7def507b3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822600277391108809, guid: d74c53267e144184a9f917f7def507b3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8775358222070261216, guid: d74c53267e144184a9f917f7def507b3, type: 3}
       propertyPath: cam
       value: 

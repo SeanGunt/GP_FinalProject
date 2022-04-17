@@ -9,6 +9,7 @@ public class RaceWin : MonoBehaviour
     public BoxCollider playerWinCollider;
     public GameObject timeCore;
     public RaceRobot raceRobot;
+    public GameObject smokeParticles;
     void Awake()
     {
         if (Instance == null)
@@ -20,6 +21,7 @@ public class RaceWin : MonoBehaviour
         robotWinCollider.enabled = true;
         playerWinCollider.enabled = true;
         robotLoseDialogue.SetActive(false);
+        smokeParticles.SetActive(true);
     }
 
     public void PlayerWin()
@@ -29,5 +31,6 @@ public class RaceWin : MonoBehaviour
         playerWinCollider.enabled = false;
         timeCore.SetActive(true);
         robotLoseDialogue.SetActive(true);
+        smokeParticles.SetActive(false);
     }
 }

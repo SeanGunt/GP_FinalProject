@@ -9,6 +9,7 @@ public class FishGoblin : MonoBehaviour
     AudioSource audioSource;
     public AudioClip grunt;
     float randomGruntTimer;
+    public GameObject goblinDeathParticles;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class FishGoblin : MonoBehaviour
 
         if (other.tag == "Zap")
         {
+            Instantiate(goblinDeathParticles, this.transform.position + this.transform.up, this.transform.rotation);
             GoblinsKilled.Instance.IncreaseScore();
             Destroy(gameObject);
         }

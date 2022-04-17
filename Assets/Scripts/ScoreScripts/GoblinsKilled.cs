@@ -32,7 +32,7 @@ public class GoblinsKilled : MonoBehaviour
     {
         killed += 1;
         score.text = "Killed: " + killed.ToString();
-        if (killed >= 35)
+        if (killed >= 30)
         {
             DestroyAllGoblins();
             timeCore.SetActive(true);

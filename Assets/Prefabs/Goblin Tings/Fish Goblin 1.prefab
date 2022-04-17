@@ -252,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movePositionTransform: {fileID: 4879016709377724038, guid: 6f67b31963d5a5c4a9f2b1f39c9756b2, type: 3}
   grunt: {fileID: 8300000, guid: 0439e2ca703b9f143b192ba4ee056c27, type: 3}
+  goblinDeathParticles: {fileID: 5349246029408556272, guid: 9459546f758cc3d4e98b785e3513bcc7, type: 3}
 --- !u!54 &7883939137028147961
 Rigidbody:
   m_ObjectHideFlags: 0

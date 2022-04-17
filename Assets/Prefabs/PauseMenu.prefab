@@ -1980,8 +1980,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Movement \u2013 WASD\nJump \u2013 Spacebar\nShoot \u2013 Left Click\nLaunch
-    Grappling Hook - Right Click\nSlow Time \u2013 F\nPause - P\nQut Game - Escape"
+  m_Text: "Movement \u2013 WASD\nJump/Disable Grapple \u2013 Spacebar\nShoot \u2013
+    Left Click\nLaunch Grappling Hook - Right Click\nSlow Time \u2013 F\nPause -
+    P\nQut Game - Escape"
 --- !u!114 &8775358221732689770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3286,9 +3287,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Movement \u2013 Left Stick\nJump \u2013 A Button\nShoot \u2013 Right Bumper\nLaunch
-    Grappling Hook - Y Button\nSlow Time \u2013 Left Bumper\nPause - Start Button\nQuit
-    Game - Select Button"
+  m_Text: "Movement \u2013 Left Stick\nJump/Disable Grapple \u2013 A Button\nShoot
+    \u2013 Right Bumper\nLaunch Grappling Hook - Y Button\nSlow Time \u2013 Left
+    Bumper\nPause - Start Button\nQuit Game - Select Button"
 --- !u!114 &8775358222339543390
 MonoBehaviour:
   m_ObjectHideFlags: 0

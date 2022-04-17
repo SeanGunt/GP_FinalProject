@@ -5,13 +5,13 @@ public class SpawnerScript : MonoBehaviour
 {
     public Transform enemyPrefab;
     public Transform spawnPoint;
-    private float timeBetweenWaves = 3.5f;
+    private float timeBetweenWaves = 2.5f;
     public static float countdown;
     private int EnemyPerWave = 1;
     
     void Awake()
     {
-        countdown = 15f;
+        countdown = 30f;
     }
     void Update()
     {

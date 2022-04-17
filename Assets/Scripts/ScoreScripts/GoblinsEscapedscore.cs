@@ -14,7 +14,7 @@ public class GoblinsEscapedscore : MonoBehaviour
     {
         BGMusic.audioSource.Stop();
         yield return new WaitForSeconds(4);
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(2);
     }
 
     void Awake()

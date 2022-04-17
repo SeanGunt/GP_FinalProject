@@ -530,7 +530,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4317a350fd4010b42824e717310e1d93, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4317a350fd4010b42824e717310e1d93, type: 3}
       propertyPath: m_LocalScale.x
@@ -1543,7 +1543,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c6d05cb8a9f83c4bbae8f3bacee693b, type: 2}
+  - {fileID: -1360991219368177298, guid: a649324c892feeb4dadcbe702e788893, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2689,7 +2689,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c9d10e197e829514982d949f0ee9c525, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c9d10e197e829514982d949f0ee9c525, type: 3}
       propertyPath: m_LocalScale.x
@@ -2853,7 +2853,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2a2970f6aa2550145bb7f32fdc1ca7a1, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a2970f6aa2550145bb7f32fdc1ca7a1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3023,9 +3023,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Movement \u2013 Left Stick\nJump \u2013 A Button\nShoot \u2013 Right Bumper\nLaunch
-    Grappling Hook - Y Button\nSlow Time \u2013 Left Bumper\nPause - Start Button\nQuit
-    Game - Select Button"
+  m_Text: "Movement \u2013 Left Stick\nJump/Disable Grapple \u2013 A Button\nShoot
+    \u2013 Right Bumper\nLaunch Grappling Hook - Y Button\nSlow Time \u2013 Left
+    Bumper\nPause - Start Button\nQuit Game - Select Button"
 --- !u!222 &846696646
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3581,7 +3581,7 @@ Transform:
   - {fileID: 1820999972}
   - {fileID: 1896647555}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1277018170
 PrefabInstance:
@@ -4558,8 +4558,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Movement \u2013 WASD\nJump \u2013 Spacebar\nShoot \u2013 Left Click\nLaunch
-    Grappling Hook - Right Click\nSlow Time \u2013 F\nPause - P\nQuit Game - Escape\n"
+  m_Text: "Movement \u2013 WASD\nJump/Disable Grapple \u2013 Spacebar\nShoot \u2013
+    Left Click\nLaunch Grappling Hook - Right Click\nSlow Time \u2013 F\nPause -
+    P\nQuit Game - Escape\n"
 --- !u!222 &1753742212
 CanvasRenderer:
   m_ObjectHideFlags: 0

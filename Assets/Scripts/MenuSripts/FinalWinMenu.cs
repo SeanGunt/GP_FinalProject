@@ -13,5 +13,6 @@ public class FinalWinMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+        GlobalSave.Instance.timeCoreScore = 0;
     }
 }
