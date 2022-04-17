@@ -17,6 +17,8 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField]
     Toggle cheatToggle;
 
+    public Text cheatIndicator;
+
     void Start()
     {
         //sets default playerprefs if they don't exist
@@ -58,15 +60,15 @@ public class OptionsMenu : MonoBehaviour
         //assigns cheat playerpref (to be used as conditional in time slow mechanic)
         PlayerPrefs.SetInt("TimeSlowCheat", cheatBool ? 1:0); //converts boolean to int
 
-        if (GameObject.FindWithTag("CheatIndicator") != null)
+        if (cheatIndicator != null)
         {
-            if (PlayerPrefs.GetInt("TimeSlowCheat") == 1 ? false:true)
+            if (PlayerPrefs.GetInt("TimeSlowCheat") == 1 ? true:false)
             {
-                GameObject.FindWithTag("CheatIndicator").SetActive(true);
+                cheatIndicator.enabled = true;
             }
             else
             {
-                GameObject.FindWithTag("CheatIndicator").SetActive(false);
+                cheatIndicator.enabled = false;
             }
         }
     }
