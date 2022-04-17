@@ -5885,7 +5885,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "EEEYA!!! BOOM\u2014DINOSHEEP RUN! YOU PUT 3 SHEEP BACK, I GIVE\r STONE.
-    THEY FALL, NO STONE."
+    2 FALL, NO STONE."
 --- !u!222 &575194722
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9111,7 +9111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4881289780862512331, guid: ce6c7c11f9cb87c4888c35158a30da8b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.483826
+      value: -39.483852
       objectReference: {fileID: 0}
     - target: {fileID: 4881289780862512331, guid: ce6c7c11f9cb87c4888c35158a30da8b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9119,7 +9119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4881289780862512331, guid: ce6c7c11f9cb87c4888c35158a30da8b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.498758
+      value: 25.498606
       objectReference: {fileID: 0}
     - target: {fileID: 4881289780862512331, guid: ce6c7c11f9cb87c4888c35158a30da8b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21396,7 +21396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040529401}
   m_LocalRotation: {x: 0.05602263, y: 0.7631294, z: -0.06676517, w: 0.64034164}
-  m_LocalPosition: {x: -39.483826, y: 3.8313556, z: 25.498758}
+  m_LocalPosition: {x: -39.483852, y: 3.8313556, z: 25.498606}
   m_LocalScale: {x: 1.2, y: 1.7511597, z: 1.048841}
   m_Children: []
   m_Father: {fileID: 0}
