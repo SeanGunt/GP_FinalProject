@@ -160,6 +160,18 @@ public class PlayerController : MonoBehaviour
             timeCore.HandleTimeCoreInteraction();
             StartCoroutine(ChangeScenes());
         }
+        if (other.tag == "TimeCore" && SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            GlobalSave.Instance.portalThreeActive = false;
+        }
+        if (other.tag == "TimeCore" && SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            GlobalSave.Instance.portalTwoActive = false;
+        }
+        if (other.tag == "TimeCore" && SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            GlobalSave.Instance.portalOneActive = false;
+        }
         if (other.tag == "PlayerEnd")
         {
             RaceWin.Instance.PlayerWin();

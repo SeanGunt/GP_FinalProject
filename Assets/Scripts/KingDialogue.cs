@@ -12,7 +12,7 @@ public class KingDialogue : MonoBehaviour
     }
     void Update()
     {
-        if (GoblinsKilled.Instance.killed < 30)
+        if (GoblinsKilled.Instance.killed < 25)
         {
             float distance = Vector3.Distance(this.transform.position, player.transform.position);
             if (distance < 15f)
@@ -24,7 +24,7 @@ public class KingDialogue : MonoBehaviour
                 normalDialogue.SetActive(false);
             }
         }
-        else if (GoblinsKilled.Instance.killed >= 30)
+        else if (GoblinsKilled.Instance.killed >= 25)
         {
             winDialogue.SetActive(true);
             normalDialogue.SetActive(false);

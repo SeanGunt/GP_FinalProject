@@ -5,6 +5,9 @@ public class GlobalSave : MonoBehaviour
 {
     public static GlobalSave Instance;
     [NonSerializedAttribute] public float timeCoreScore;
+    public bool portalOneActive = true;
+    public bool portalTwoActive = true;
+    public bool portalThreeActive = true;
     void Awake()
     {
         if (Instance == null)

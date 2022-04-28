@@ -3505,6 +3505,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1506966937907576026, guid: d74c53267e144184a9f917f7def507b3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822600277391108809, guid: d74c53267e144184a9f917f7def507b3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8775358222070261216, guid: d74c53267e144184a9f917f7def507b3, type: 3}
       propertyPath: cam
       value: 
@@ -4146,7 +4154,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: b23ffdf26e985b449b7d3c023c0f21f3, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
